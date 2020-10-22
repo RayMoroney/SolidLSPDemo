@@ -7,21 +7,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            IManager accountingVP = ClassInstanceGenerator.CreateManager();
+            IManager accountingVP = EmployeeProcessor.SetupManager();
 
-            accountingVP.FirstName = "Mary";
-            accountingVP.LastName = "Daley";
-            accountingVP.CalculatePerHourRate(4);
+            IManaged emp = EmployeeProcessor.SetUpManagedEmployee(accountingVP);
 
-            IManaged emp = ClassInstanceGenerator.CreateManagedEmployee();
-
-            emp.FirstName = "John";
-            emp.LastName = "Doe";
-            emp.AssignManager(accountingVP);
-            emp.CalculatePerHourRate(2);
-
-            Console.WriteLine($"{ emp.FirstName }'s salary is ${ emp.Salary }/hour.");
-
+            EmployeeProcessor.DisplayEmployee(emp);
 
             Console.ReadLine();
         }
